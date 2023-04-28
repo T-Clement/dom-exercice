@@ -22,7 +22,7 @@ btn1.addEventListener('click', function(e) {
 // document.querySelectorAll('button[data-text-toggle-id]').forEach(btn => {
 //     btn.addEventListener('click', function(e) {
 //         document.getElementById(this.dataset.textToggleId).classList.toggle('hidden');
-//     });
+//     }); 
 // });
 
 
@@ -166,3 +166,45 @@ document.getElementById('ex7-list').addEventListener('click', function(e) {
 
 /* ------------------------------------ */
 /* --- Exercice 8 --- */
+
+// const counters = {
+//     level: 0,
+//     strength: 0,
+//     shield: 0
+// };
+
+
+// document.querySelector('#ex8-button-level').addEventListener('click', function(event) {
+//     if (counters.level >= 100) return;
+
+//     counters.level += 5;
+//     document.getElementById(this.dataset.progressId).style.width = `${counters.level}%`;
+// });
+
+// document.querySelector('#ex8-button-strength').addEventListener('click', function(event) {
+//     if (counters.strength >= 100) return;
+
+//     counters.strength += 5;
+//     document.querySelector('#ex8-strength').style.width = `${counters.strength}%`;
+// });
+
+// document.querySelector('#ex8-button-shield').addEventListener('click', function(event) {
+//     if (counters.shield >= 100) return;
+
+//     counters.shield += 5;
+//     document.querySelector('#ex8-shield').style.width = `${counters.shield}%`;
+// });
+
+const counters = {};
+const btns8 = document.querySelectorAll('button[data-progress-id]');
+
+btns8.forEach(function(btn) {
+    counters[btn.dataset.progressId] = 0;
+    btn.addEventListener('click', function(event) {
+        const id = this.dataset.progressId;
+        counters[id] = Math.min(counters[id] + 5, 100);
+        document.getElementById(id).style.width = `${counters[id]}%`;
+    });
+});
+
+
