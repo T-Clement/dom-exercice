@@ -1,0 +1,16 @@
+.hidden {
+    display: none;
+}
+
+.blue {
+    background-color: lightblue;
+}
+.red {
+    background-color: lightcoral;
+}
+.green {
+    background-color: lightgreen;
+}
+.pink {
+    background-color: lightpink;
+}
