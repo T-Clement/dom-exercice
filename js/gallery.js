@@ -5,7 +5,6 @@ const mainDescription = document.getElementById('gallery-description');
 // console.log(mainTitle);
 // console.log(mainDescription);
 
-const galleryPictures = document.querySelectorAll('#gallery-thumbs .js-img');
 const gallery = document.getElementById("gallery-thumbs");
 // console.log(galleryPictures);
 // console.log(gallery);

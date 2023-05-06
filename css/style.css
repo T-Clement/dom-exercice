@@ -14,3 +14,16 @@
 .pink {
     background-color: lightpink;
 }
+
+
+.active {
+    background-color: #FFF;  /* the tab get the white color*/
+}
+
+ #tabs-contents article {
+    display: none;
+ }
+
+ #tabs-contents article.active {
+    display: inherit;
+ }
