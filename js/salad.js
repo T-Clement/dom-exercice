@@ -49,10 +49,6 @@ ingredientsAvailable.addEventListener("click", function(event) {
     // block to 5 ingredients
     if (ingredientsPicked.length >= 5) return;
 
-
-    console.log("EVENT " +event.target.innerText);
-    
-
     console.log(ingredientsInSalad);
 
     // remove ingredient clicked of ingredient js-list
@@ -61,7 +57,6 @@ ingredientsAvailable.addEventListener("click", function(event) {
 
     // remove from ingredients available of HTML list
     event.target.remove();
-
 
     // add picked indredients to list
     ingredientsPicked.push(event.target.innerText);
@@ -90,6 +85,8 @@ ingredientsAvailable.addEventListener("click", function(event) {
 //----------------------------------------------------------------------------------------------
 ingredientsInSalad.addEventListener("click", function(event) {
     if (event.target.tagName !== 'BUTTON') return;
+
+    // put innerText of button in js-list
     ingredients.push(event.target.innerText);
     console.log(ingredients);
 
@@ -104,6 +101,8 @@ ingredientsInSalad.addEventListener("click", function(event) {
     button.textContent = event.target.innerText;
     // add li to ul of picked ingredients
     ingredientsAvailable.appendChild(saladItem);
+    
+    // remove from DOM / HTML list
     event.target.remove();
 
     // remove ingredient clicked of ingredientPicked js-list
@@ -111,5 +110,4 @@ ingredientsInSalad.addEventListener("click", function(event) {
     ingredientsPicked.splice(index, 1);
     counter--;
     counterDOM.innerText = counter;
-
 })
