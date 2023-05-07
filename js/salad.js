@@ -9,6 +9,10 @@ const ingredientsInSalad = document.getElementById("salad-final");
 console.log(ingredientsInSalad);
 
 
+let counterDOM = document.getElementById("salad-count");
+counter = 0;
+
+// ------------------------------------------------------------------------------
 // for each ingredient in js list, add a button to the page
 ingredients.forEach(function(ingredient) {
 
@@ -17,43 +21,45 @@ ingredients.forEach(function(ingredient) {
     let button = document.createElement("button");
     button.classList.add('button');
     li.appendChild(button);
-    // console.log("Button: " + button)
 
     // add text to button
     button.textContent = ingredient;
-
     // add li to the DOM
     ingredientsAvailable.appendChild(li);
+    // ingredient.pop(); 
 });
 
-const listItemsAvailable = document.querySelectorAll("#salad-ingredients li");
-console.log(listItemsAvailable);
 
-const listItemsAvailableBtn = document.querySelectorAll("#salad-ingredients li .button");
-console.log(listItemsAvailableBtn);
+// // for dev purposes
+// const listItemsAvailable = document.querySelectorAll("#salad-ingredients li");
+// console.log(listItemsAvailable);
 
-// listItemsAvailableBtn.addEventListener
+// const listItemsAvailableBtn = document.querySelectorAll("#salad-ingredients li .button");
+// console.log(listItemsAvailableBtn);
 
 
-// eventListener, if click -> passed in salad-list
 
-// const ingredientsInSalad = document.getElementById("salad-final");
+//------------------------------------------------------------------------------------------------
+// side available, if click remove to current list and add to picked list
 ingredientsAvailable.addEventListener("click", function(event) {
 
     // if click on != button, quit function
     if (event.target.tagName !== 'BUTTON') return;
-
-
 
     // block to 5 ingredients
     if (ingredientsPicked.length >= 5) return;
 
 
     console.log("EVENT " +event.target.innerText);
-    // console.log(this);
+    
+
     console.log(ingredientsInSalad);
 
+    // remove ingredient clicked of ingredient js-list
+    let index = ingredients.indexOf(`${event.target.innerText}`);
+    ingredients.splice(index, 1);
 
+    // remove from ingredients available of HTML list
     event.target.remove();
 
 
@@ -74,10 +80,36 @@ ingredientsAvailable.addEventListener("click", function(event) {
 
 
     console.log(ingredientsPicked);
+    console.log(ingredients);
+    counter++;
+    counterDOM.innerText = counter;
 });
 
-// handle click on ul !!!!!!!!
 
-ingredientsPicked.addEventListener("click", function() {
+
+//----------------------------------------------------------------------------------------------
+ingredientsInSalad.addEventListener("click", function(event) {
+    if (event.target.tagName !== 'BUTTON') return;
+    ingredients.push(event.target.innerText);
+    console.log(ingredients);
+
+    // create li element
+    let saladItem = document.createElement("li");
+    // create button element
+    let button = document.createElement("button");
+    button.classList.add("button");
+    // add button inside li
+    saladItem.appendChild(button);
+    // button take text content from button who gets clicked
+    button.textContent = event.target.innerText;
+    // add li to ul of picked ingredients
+    ingredientsAvailable.appendChild(saladItem);
+    event.target.remove();
+
+    // remove ingredient clicked of ingredientPicked js-list
+    let index = ingredientsPicked.indexOf(`${event.target.innerText}`);
+    ingredientsPicked.splice(index, 1);
+    counter--;
+    counterDOM.innerText = counter;
 
 })
